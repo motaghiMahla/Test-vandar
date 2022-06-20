@@ -32,7 +32,7 @@
     "node": ">=12",
     "npm": ">=6"
   },
-  "name": "testVandar",
+  "name": "test-vandar",
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
