@@ -1,0 +1,100 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.container {
+  border-radius: 4px;
+
+  &.error {
+    background-color: $primary-error;
+  }
+
+  &.success {
+    background-color: $primary-valid;
+  }
+
+  .banner {
+    @include flex-display(
+      $alignItems: center,
+      $justifyContent: space-between,
+      $gap: 50px
+    );
+
+    width: 100%;
+
+    padding: 16px;
+
+    @media (max-width: $tablet-screen) {
+      flex-direction: column;
+      gap: 30px;
+
+      padding: 8px 16px;
+    }
+
+    &.no-icon {
+      gap: 0;
+    }
+
+    &.row {
+      flex-direction: row;
+
+      & .button-container {
+        @media (max-width: $tablet-screen) {
+          width: auto;
+        }
+      }
+    }
+
+    &.full-width {
+      @include container();
+
+      padding: 16px 70px;
+
+      @media (max-width: $tablet-screen) {
+        padding: 8px 16px;
+      }
+    }
+
+    & .text {
+      text-align: justify;
+
+      color: $secondary-theme;
+    }
+
+    & .button-container {
+      @include flex-display(
+        $alignItems: center,
+        $justifyContent: space-between,
+        $gap: 14px
+      );
+
+      @media (max-width: $tablet-screen) {
+        width: 100%;
+      }
+
+      & > button {
+        @media (max-width: $tablet-screen) {
+          width: 100%;
+        }
+
+        & > span {
+          white-space: nowrap;
+        }
+      }
+
+      & .icon-container {
+        @include flex-display(
+          $alignItems: center,
+          $justifyContent: space-between
+        );
+
+        cursor: pointer;
+
+        & > svg {
+          width: 20px;
+
+          stroke: $secondary-theme;
+        }
+      }
+    }
+  }
+}
