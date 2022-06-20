@@ -1,16 +1,7 @@
-import {useContext, useRef} from 'react'
-
-import {AppContext} from 'appContext'
-import {baseUrl, unAuthorizedCode} from 'shared'
-import {specialErrorsInFarsi, useAuthGet} from 'utils'
+import {baseUrl} from 'shared'
+import {specialErrorsInFarsi} from 'utils'
 
 function useHttpRequests() {
-  const {appState} = useContext(AppContext)
-
-  const {authGet} = useAuthGet()
-
-  const authGetRef = useRef(authGet)
-
   /**
    *
    * @param {JSON} response
@@ -20,11 +11,6 @@ function useHttpRequests() {
   async function errorHandler(response, mood = '') {
     const error = await response.json()
     error.status = response.status
-
-    if (error.status === unAuthorizedCode) {
-      authGetRef.current({token: appState.accessToken, mood: mood})
-    }
-
     if (error?.detail) {
       error.detail = specialErrorsInFarsi(error.detail)
       return Promise.reject(error)
