@@ -1,0 +1,62 @@
+{
+  "dependencies": {
+    "env-cmd": "10.1.0",
+    "gsap": "^3.10.4",
+    "i18next": "^21.8.7",
+    "install": "^0.13.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-dom": "^18.1.0",
+    "react-hook-form": "^7.19.0",
+    "react-i18next": "^11.17.2",
+    "react-number-format": "^4.9.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.52.2",
+    "universal-cookie": "^4.0.4"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.18.3",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-testing-library": "^5.5.0",
+    "gzipper": "^7.1.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
+    "source-map-explorer": "^2.5.2",
+    "web-vitals": "^2.1.4"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6"
+  },
+  "name": "sarrafeh",
+  "private": true,
+  "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "build": "react-scripts build",
+    "build-gzipped": "yarn build && yarn gzipped",
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"./src\"",
+    "gzipped": "gzipper compress --verbose build buildGzipped",
+    "lint": "eslint \"./src\"",
+    "serve": "serve -s build -p 6010",
+    "serve-build": "yarn build && yarn serve",
+    "start": "react-scripts start"
+  },
+  "version": "1.0.0",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
