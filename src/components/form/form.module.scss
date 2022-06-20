@@ -1,0 +1,10 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.form {
+  @include flex-display($gap: 2.4rem, $flexDirection: column);
+
+  & > :last-child {
+    margin-top: auto;
+  }
+}

@@ -1,0 +1,68 @@
+@import '~assets/variables';
+@import '../mixins.module.scss';
+
+.select-control {
+  @include defaultSelect();
+
+  &.error .select {
+    border-color: $primary-error;
+  }
+
+  &.error .icon-container.text {
+    border-color: $primary-error;
+  }
+
+  & .select {
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    option {
+      background-color: $secondary-theme;
+
+      &:disabled {
+        @include placeholder();
+      }
+    }
+  }
+
+  & .icon-container {
+    background-color: $secondary-theme;
+    color: $primary-light;
+
+    position: absolute;
+
+    height: calc(48px - 4px);
+
+    margin: 2px;
+    padding: 14px;
+
+    &.text {
+      font-size: 1.6rem;
+
+      height: 44px;
+
+      border-right: 2px solid $primary-light;
+    }
+
+    & svg {
+      width: 30px;
+
+      cursor: pointer;
+    }
+
+    @media (max-width: $tablet-screen) {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+html[lang='fa'] .select-control {
+  & .select.has-icon {
+    padding-left: 46px;
+  }
+
+  & .icon-container {
+    left: 0;
+  }
+}
