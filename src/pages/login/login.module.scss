@@ -1,0 +1,38 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.login {
+  @include flex-display(
+    $alignItems: center,
+    $justifyContent: space-between,
+    $gap: 14px
+  );
+  height: 100vh;
+
+  background: $primary-bg;
+
+  & .logo {
+    & img {
+      max-width: 80px;
+      margin: 0 auto;
+    }
+  }
+
+  & .sideBar {
+    height: 100%;
+    min-width: 30rem;
+
+    padding: 10rem 5rem;
+
+    background: $secondary-bg;
+
+    @include flex-display(
+      $flexDirection: column,
+      $alignItems: center,
+      $justifyContent: space-between,
+      $gap: 15px
+    );
+
+    font-size: 1.4rem;
+  }
+}

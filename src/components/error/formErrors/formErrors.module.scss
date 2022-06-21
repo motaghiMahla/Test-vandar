@@ -1,0 +1,47 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.error {
+  @include flex-display(
+    $alignItems: flex-start,
+    $justifyContent: center,
+    $flexDirection: column,
+    $gap: 8px
+  );
+
+  font-size: 1.4rem;
+
+  color: $primary-error;
+
+  margin-top: 8px;
+
+  @media (max-width: $tablet-screen) {
+    font-size: 1.2rem;
+  }
+
+  & .error-item-container {
+    @include flex-display(
+      $alignItems: flex-start,
+      $justifyContent: flex-start,
+      $gap: 4px
+    );
+  }
+
+  & .error-icon-container {
+    @include flex-display($alignItems: center);
+
+    & > svg {
+      width: 24px;
+
+      fill: $primary-error;
+    }
+  }
+
+  & .text {
+    line-height: 2.5rem;
+
+    @media (max-width: $tablet-screen) {
+      line-height: 2rem;
+    }
+  }
+}

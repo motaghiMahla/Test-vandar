@@ -1,0 +1,209 @@
+@import './assets/variables';
+@import './assets/mixins';
+
+html {
+  font-size: 10px;
+  line-height: 1.15;
+
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  @media (max-width: $tablet-screen) {
+    font-size: 9px;
+    line-height: 1.14;
+  }
+}
+
+html[lang='fa'] {
+  direction: rtl;
+}
+
+body {
+  font-family: $font-Regular;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  margin: 0;
+
+  background-color: $primary-theme;
+  transition: background-color 0.3s;
+}
+
+*,
+*:before,
+*:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+[aria-hidden='true'] {
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  color: $primary-dark;
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  background-color: transparent;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  -webkit-appearance: button;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+
+  margin: 0;
+}
+
+button,
+a.button {
+  font-family: $font-Bold;
+  text-decoration: none;
+  line-height: 2;
+
+  cursor: pointer;
+
+  background: transparent;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  -webkit-appearance: none;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  color: $primary-dark;
+}
+
+#root {
+  @include flex-display($flexDirection: column);
+
+  min-height: 100vh;
+}
+
+.d-none {
+  display: none;
+}
+
+.direction-ltr {
+  direction: ltr;
+}
+
+.direction-rtl {
+  direction: rtl;
+}
+
+.heading-01 {
+  font: 400 3rem/4.5rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.heading-02 {
+  font: 400 2.4rem/3.5rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.heading-03,
+.desc-01 {
+  font: 400 2rem/3.2rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.heading-04,
+.desc-02 {
+  font: 400 1.6rem/2.5rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.desc-03 {
+  font: 400 1.4rem/2.3rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.desc-04 {
+  font: 400 1.2rem/2.1rem $font-Regular;
+
+  color: $primary-dark;
+}
+
+.form-error {
+  display: grid;
+
+  font-size: 1.2rem;
+
+  color: $primary-sell;
+
+  margin-top: 16px;
+
+  @media (max-width: $tablet-screen) {
+    font-size: 1rem;
+
+    margin-top: 12px;
+  }
+}

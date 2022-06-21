@@ -1,0 +1,23 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.container {
+  @include flex-display($alignItems: flex-start, $gap: 10px);
+
+  color: $primary-light;
+
+  font-size: $size-small;
+  line-height: 26px;
+
+  padding: 0px 0px 10px;
+  margin-top: -10px;
+
+  @media (max-width: $tablet-screen) {
+    font-size: $size-very-small;
+  }
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}

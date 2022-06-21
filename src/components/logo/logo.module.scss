@@ -1,0 +1,41 @@
+@import '~assets/variables';
+
+.logo {
+  position: relative;
+  right: -9px;
+
+  @media (max-width: $tablet-screen) {
+    width: 130px;
+    height: 55px;
+  }
+}
+
+header {
+  & .logo {
+    @media (max-width: $tablet-screen) {
+      right: -17px;
+    }
+
+    & picture img {
+      max-width: 140px;
+    }
+  }
+}
+
+footer {
+  & .logo {
+    @media (max-width: $tablet-screen) {
+      right: unset;
+    }
+
+    & picture img {
+      width: 142px;
+      height: 85px;
+
+      @media (max-width: $tablet-screen) {
+        width: 101px;
+        height: 60px;
+      }
+    }
+  }
+}

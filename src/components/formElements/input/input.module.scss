@@ -1,0 +1,109 @@
+@import '~assets/variables';
+@import '../mixins.module.scss';
+
+.input-control {
+  @include label();
+
+  position: relative;
+
+  &[data-type='file'] {
+    width: 100%;
+
+    margin: 0;
+  }
+
+  & .checkboxLabel {
+    display: inline-block !important;
+    margin-right: 9px;
+  }
+
+  &.error .input,
+  &.error input[inputmode='numeric'],
+  &.error input[type='text'] {
+    border-color: $primary-error;
+  }
+
+  &.error .icon-container.text {
+    border-color: $primary-error;
+  }
+
+  & .input,
+  & input[inputmode='numeric'],
+  & input[type='text'] {
+    @include inputDefaultClasses();
+
+    font-size: $size-medium;
+
+    background: transparent;
+    color: $primary-dark;
+
+    width: 100%;
+    height: 48px;
+
+    padding: 12px 16px;
+
+    border-radius: 4px;
+    border: 2px solid $primary-dark;
+
+    @media (max-width: $tablet-screen) {
+      padding: 8px 12px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      opacity: 0.7;
+    }
+  }
+
+  & .icon-container {
+    background-color: transparent;
+    color: $primary-dark;
+
+    position: absolute;
+
+    height: 44px;
+
+    margin: 2px;
+    padding: 12px 14px;
+
+    &.text {
+      font-size: $size-default;
+      line-height: 2.3rem;
+
+      border-right: 2px solid $primary-dark;
+
+      @media (max-width: $tablet-screen) {
+        font-size: $size-very-small;
+      }
+    }
+
+    & svg {
+      width: 30px;
+
+      cursor: pointer;
+    }
+
+    @media (max-width: $tablet-screen) {
+      font-size: $size-very-small;
+    }
+  }
+}
+
+html[lang='fa'] .input-control {
+  & .input,
+  input[inputmode='numeric'],
+  input[type='text'] {
+    &::placeholder {
+      text-align: right;
+    }
+
+    &.has-icon {
+      padding-left: 46px;
+    }
+  }
+
+  & .icon-container {
+    left: 0;
+  }
+}

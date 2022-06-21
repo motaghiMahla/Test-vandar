@@ -1,0 +1,109 @@
+@import './fonts';
+
+// Fonts
+$font-Regular: Vazir-Regular, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  'Helvetica Neue', sans-serif;
+$font-Bold: Vazir-Bold, Vazir-Regular, -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-Light: Vazir-Light, Vazir-Regular, -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+
+// Colors
+$primary-bg: #fafafa;
+$secondary-bg: #f5f5f5;
+
+$primary-dark: #333333;
+
+$primary-border: #4c9f87;
+
+$primary: #4c9f87;
+
+$primary-error: #d44d42;
+
+$secondary: #4c9f87;
+$tertiary: #b5a240;
+$quaternary: #f3b221;
+$senary: #060e1d;
+$septenary: #eaeaea;
+
+$secondary-dark: #908e8e;
+$tertiary-dark: #041026;
+$quaternary-dark: #030b1b;
+$senary-dark: #333;
+
+$primary-light: #efefef;
+
+$secondary-border: #272f3f;
+$tertiary-border: #f27e0b;
+$quaternary-border: #44526e;
+$quinary-border: #f3b221;
+$senary-border: #0e182b;
+$septenary-border: #f8f8f8;
+$octonary-border: #878787;
+$nonary-border: #5f636a;
+
+$primary-disabled: #4a5568;
+
+$primary-active: #060e1c;
+
+$primary-valid: #06d6a0;
+
+$primary-sell: #dd2c41;
+
+$primary-placeholder: #c2c2c2;
+$secondary-placeholder: #222938;
+
+$primary-shadow: rgba(255, 255, 255, 0.1);
+$secondary-shadow: rgba(0, 0, 0, 0.25);
+
+$primary-header: #1c2430;
+
+$primary-theme: #000b21;
+$secondary-theme: #091427;
+$tertiary-theme: #111b2d;
+$quaternary-theme: #071225;
+$senary-theme: #060e1d;
+$septenary-theme: #b9b9b9;
+
+$secondary-theme-rgba: rgba(9, 20, 39, 0.5);
+
+$primary-text: #d5d5d5;
+$secondary-text: #707070;
+$tertiary-text: #9c9d9e;
+
+$scrollbar-background-color: #091427;
+$scrollbar-color: #6c7379;
+
+$market-cap: #a5a6f6;
+
+// Sizes
+$max-width: 1440px;
+$full-width: 100%;
+
+// Font sizes
+$size-xxx-large: 5rem;
+$size-xx-large: 3.6rem;
+$size-extra-large: 3rem;
+$size-very-large: 2.4rem;
+$size-large: 2rem;
+$size-medium: 1.8rem;
+$size-default: 1.6rem;
+$size-small: 1.4rem;
+$size-very-small: 1.2rem;
+$size-xx-small: 1.1rem;
+
+// Media
+$x-small-mobile-screen: 360px;
+$small-mobile-screen: 440px;
+$mobile-screen: 480px;
+$x-mobile-screen: 600px;
+$tablet-screen: 767px;
+$medium-ish-tablet-screen: 920px;
+$medium-tablet-screen: 980px;
+$medium-screen: 1024px;
+$large-screen: 1200px;
+$large-ish-screen: 1300px;
+$very-large-screen: 1440px;

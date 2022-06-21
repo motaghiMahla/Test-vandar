@@ -1,0 +1,49 @@
+@import '~assets/variables';
+@import '~assets/mixins';
+
+.text {
+  margin-bottom: 24px;
+
+  @media (max-width: $tablet-screen) {
+    margin-bottom: 20px;
+  }
+}
+
+.verify {
+  & .inputs-label {
+    color: $primary-light;
+
+    margin: 12px 0px;
+
+    @media (max-width: $tablet-screen) {
+      margin-bottom: 8px;
+    }
+  }
+
+  & > p {
+    margin-top: 0;
+  }
+
+  & .inputs {
+    @include grid-display($columns: repeat(5, 1fr), $gap: 16px);
+    direction: ltr;
+
+    & > div {
+      margin-bottom: 0;
+    }
+
+    & input {
+      text-align: center;
+    }
+  }
+
+  & .reset {
+    @include flex-display(center, space-between);
+  }
+}
+
+.buttons-container {
+  @include grid-display($gap: 8px);
+
+  @include buttons-container();
+}
