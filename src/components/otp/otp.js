@@ -10,18 +10,16 @@ import {useTranslation} from 'react-i18next'
 import {useForm} from 'react-hook-form'
 import PropTypes from 'prop-types'
 import {useCookies} from 'react-cookie'
-import {useNavigate} from 'react-router-dom'
 
 import {AppContext} from 'appContext'
 import {Button, Input, Banner, FormErrors} from 'components'
-import {post, get} from 'utils'
+import {post} from 'utils'
 import {
   enOrFaNumber,
   otpTimeoutMinutes,
   otpTimeoutSeconds,
   authAccessToken,
   authRefreshToken,
-  authMaxAge,
 } from 'shared'
 
 import style from './otp.module.scss'
@@ -50,7 +48,6 @@ function OTP({backButtonHandler = null, modalCloseHandler = null}) {
   const [state, setState] = useState(initialStates)
 
   const {t} = useTranslation()
-  const navigate = useNavigate()
   const [, setCookie] = useCookies()
   const {
     register,
@@ -185,74 +182,45 @@ function OTP({backButtonHandler = null, modalCloseHandler = null}) {
     },
     [setFocus],
   )
-  const formHandler = useCallback(
-    formData => {
-      debugger
-      setState(prev => ({...prev, status: 'pending'}))
-      const data = {
-        verify_otp: `${formData.input01}${formData.input02}${formData.input03}${formData.input04}${formData.input05}`,
-        mobile: serializedMobileRef.current,
-      }
+  const formHandler = useCallback(formData => {
+    setState(prev => ({...prev, status: 'pending'}))
+    const data = {
+      verify_otp: `${formData.input01}${formData.input02}${formData.input03}${formData.input04}${formData.input05}`,
+      mobile: serializedMobileRef.current,
+    }
 
-      post({
-        endpoint: 'api/user/otpreglogin/',
-        body: data,
-      }).then(
-        response => {
-          setAppStateRef.current(prev => ({
-            ...prev,
-            accessToken: response.token,
-            refreshToken: response.refresh_token,
-          }))
+    post({
+      endpoint: 'v2/mobile/verify',
+      body: data,
+    }).then(
+      response => {
+        setAppStateRef.current(prev => ({
+          ...prev,
+          accessToken: response.access_token,
+          refreshToken: response.refresh_token,
+        }))
 
-          setCookieRef.current(authAccessToken, response.token, {
-            maxAge: authMaxAge,
-            sameSite: 'lax',
-            path: '/',
-          })
-          setCookieRef.current(authRefreshToken, response.refresh_token, {
-            maxAge: authMaxAge,
-            sameSite: 'lax',
-            path: '/',
-          })
-
-          get({
-            endpoint: 'api/user/account/',
-            token: response.token,
-          }).then(response => {
-            setState(prev => ({...prev, status: 'resolved'}))
-
-            setAppStateRef.current(prev => ({
-              ...prev,
-              userInfo: response,
-              ...(!response.fully_verified && {welcomeModalStatus: true}),
-            }))
-            if (!response.fully_verified) {
-              navigate('/auth')
-            } else if (response.account_cash[0].cash === 0) {
-              navigate('/profile/pay-and-transfer')
-            } else if (
-              response.account_cash[0].cash > 1 &&
-              parseFloat(response.account_basket[0].entered_usdt) < 1
-            ) {
-              navigate('/profile/intelligent-basket')
-            } else {
-              navigate('/profile')
-            }
-          })
-        },
-        error => setState(prev => ({...prev, status: 'rejected'})),
-      )
-    },
-    [navigate],
-  )
+        setCookieRef.current(authAccessToken, response.access_token, {
+          maxAge: response.expires_in,
+          sameSite: 'lax',
+          path: '/',
+        })
+        setCookieRef.current(authRefreshToken, response.refresh_token, {
+          maxAge: response.expires_in,
+          sameSite: 'lax',
+          path: '/',
+        })
+      },
+      error => setState(prev => ({...prev, status: 'rejected'})),
+    )
+  }, [])
   const sendSmsHandler = useCallback(abortController => {
     const data = {
       mobile: serializedMobileRef.current,
     }
 
     post({
-      endpoint: 'api/user/otpreglogin/',
+      endpoint: 'v2/mobile/verify',
       body: data,
       abortController: abortController,
     }).then(
