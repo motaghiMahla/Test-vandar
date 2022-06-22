@@ -7,13 +7,7 @@ import NumberFormat from 'react-number-format'
 import {AppContext} from 'appContext'
 import {Form, Banner, OTP} from 'components'
 import {Eye, ClosedEye} from 'assets/icons'
-import {
-  irMobileOnly,
-  space,
-  authAccessToken,
-  authMaxAge,
-  authRefreshToken,
-} from 'shared'
+import {irMobileOnly, space, authAccessToken, authRefreshToken} from 'shared'
 
 import {eyeHandler, post} from 'utils'
 
@@ -103,14 +97,13 @@ function Login({backButton = true}) {
       body: data,
     }).then(
       response => {
-        debugger
         setAppStateRef.current(prev => ({
           ...prev,
           accessToken: response.access_token,
           refreshToken: response.refresh_token,
         }))
 
-        setCookieRef.current(authAccessToken, response.token, {
+        setCookieRef.current(authAccessToken, response.access_token, {
           maxAge: response.expires_in,
           sameSite: 'lax',
           path: '/',
@@ -147,42 +140,47 @@ function Login({backButton = true}) {
     ],
     [errors?.password?.type, httpRequestErrors?.password1],
   )
-  const handleResetPassword = useCallback((formData, setState) => {
-    setState(prev => ({
-      ...prev,
-      httpRequestErrors: {},
-      resetRequest: 'pending',
-    }))
-    const data = {
-      mobile: '“09134587478',
-      Key: '12345',
-      scope: 'ForgotPass',
-    }
+  const handleResetPassword = useCallback(
+    (formData, setState) => {
+      verificationStepHandler()
 
-    post({endpoint: 'v2/change/password', body: data}).then(
-      response => {
-        if (response) {
+      setState(prev => ({
+        ...prev,
+        httpRequestErrors: {},
+        resetRequest: 'pending',
+      }))
+      const data = {
+        mobile: '09134587478',
+        Key: '12345',
+        scope: 'ForgotPass',
+      }
+
+      post({endpoint: 'v2/change/password', body: data}).then(
+        response => {
+          if (response) {
+            setState(prev => ({
+              ...prev,
+              bannerStatus: true,
+              resetRequest: 'resolved',
+            }))
+          } else {
+            setState(prev => ({
+              ...prev,
+              resetRequest: 'rejected',
+            }))
+          }
+        },
+        error =>
           setState(prev => ({
             ...prev,
+            httpRequestErrors: error,
             bannerStatus: true,
-            resetRequest: 'resolved',
-          }))
-        } else {
-          setState(prev => ({
-            ...prev,
             resetRequest: 'rejected',
-          }))
-        }
-      },
-      error =>
-        setState(prev => ({
-          ...prev,
-          httpRequestErrors: error,
-          bannerStatus: true,
-          resetRequest: 'rejected',
-        })),
-    )
-  }, [])
+          })),
+      )
+    },
+    [verificationStepHandler],
+  )
 
   const formElements = useMemo(
     () => [
@@ -238,7 +236,7 @@ function Login({backButton = true}) {
         children: tRef.current('buttons.passwordRecovery'),
         onClick: e => {
           e.preventDefault()
-          // handleResetPassword({email}, setState)
+          handleResetPassword(setState)
         },
       },
       {
@@ -253,6 +251,7 @@ function Login({backButton = true}) {
     [
       control,
       errors?.mobile,
+      handleResetPassword,
       mobileErrors,
       passwordErrors,
       register,
@@ -306,7 +305,12 @@ function Login({backButton = true}) {
           <Logo />
         </div>
       </div>
-      <div className={style.main}></div>
+      <div className={style.main}>
+        <div className={style.container}>
+          <div className={style['image-holder']}></div>
+          <div className={style['text-holder']}></div>
+        </div>
+      </div>
     </div>
   )
 }
